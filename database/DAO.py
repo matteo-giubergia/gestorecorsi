@@ -3,11 +3,9 @@ from model.corso import Corso
 
 
 class DAO():
-    def __init__(self):
-        pass
 
     @staticmethod
-    def getlistCodins():
+    def getCodins():
         cnx = DBConnect.get_connection()
         cursor = cnx.cursor(dictionary=True)
         query ="""select c.codins from corso c"""
@@ -33,7 +31,7 @@ class DAO():
         for row in cursor:# row è un dizionario e accedo alla chiave codins
             # res.append(Corso(codins=row["codins"], crediti=row["crediti"],
             #                  nome=row["nome"], pd=row["pd"]))
-            res.append(**row)
+            res.append(Corso(**row))
 
         cursor.close()
         cnx.close()

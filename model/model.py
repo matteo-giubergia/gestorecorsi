@@ -1,4 +1,4 @@
-from database import DAO
+from database.DAO import DAO
 
 
 class Model:
@@ -6,7 +6,7 @@ class Model:
         pass
 
     def getlistCodins(self):
-        return DAO.getlistCodins()
+        return DAO.getCodins()
 
     def getAllCorsi(self):
         return DAO.getAllCorsi()

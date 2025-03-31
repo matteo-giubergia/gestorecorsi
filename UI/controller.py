@@ -8,7 +8,8 @@ class Controller:
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def handlePrintCorsiPD(self):
+    def handlePrintCorsiPD(self,e):
+        self._view.lvTxtOut.controls.clear()
         pd = self._view.ddPD.value
         if pd is None:
             #self._view.lvTxtOut.controls.append(ft.Text("Seleziona un periodo didattico", color="red"))
@@ -21,7 +22,7 @@ class Controller:
         else:
             pdInt = 2
         corsiPD = self._model.getCorsiPD(pdInt)
-        self._view.controls.append(ft.Text(f"Corsi del {pd} periodo didattico"))
+        self._view.lvTxtOut.controls.append(ft.Text(f"Corsi del {pd} periodo didattico"))
         for c in corsiPD:
             self._view.controls.append(ft.Text(c))
         self._view.update_page()
@@ -43,12 +44,13 @@ class Controller:
         # for cod in self._model.getlistCodins():
         #     self._view.ddCodins.options.append(ft.dropdown.Option(cod))
         for c in self._model.getAllCorsi():
-         self._view.ddCodins.options.append(ft.dropdown.Option(key=c.codins, data=c,
-                                                               on_click=self._choiceDDCodins))
+            self._view.ddCodins.options.append(ft.dropdown.Option(key=c.codins, data=c,
+                                                               on_click=self._choiceDDCodins))# data=c permette di associare direttamente l'oggetto c alla selezione del drpdown
 
     def _choiceDDCodins(self,e ):
-        self._ddCodinsValue = e.conrtrol.data
+        self._ddCodinsValue = e.conrtrol.data #recupera l'oggetto corso associato all'attributo data del dropdown
         print(self._ddCodinsValue)
+        print("In _choiceDDCodins", type(self._ddCodinsValue))
 
-    def ddCodinsSelecetd(self):
-        type(self._view.ddCodins.value)
+    def ddCodinsSelecetd(self,e):
+        print("In ddCodinsSelected",type(self._view.ddCodins.value))

@@ -1,16 +1,13 @@
 from dataclasses import dataclass
 
-from model.studente import Studente
-
-
 @dataclass
 class Corso:
     codins: str
     crediti : int
     nome: str
     pd: int
-    studenti: list[Studente] = None
-    matricole = list[str] = None
+    # studenti: list[Studente] = None
+    # matricole = list[str] = None
 
     def __eq__(self, other):
         return self.codins == other.codins
@@ -19,4 +16,4 @@ class Corso:
         return hash(self.codins)
 
     def __str__(self):
-        return f"{self.nome} {self.codins} {self.crediti} CFU"
+        return f"{self.nome} ({self.codins}) - {self.crediti} CFU"
